@@ -1,10 +1,55 @@
-/* styles.css */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
 }
 
+header {
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  background-color: #f5f5f5;
+  box-shadow: 0 0 10px #d0d0d0;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+li {
+  position: relative;
+}
+
+li a {
+  text-decoration: none;
+  color: #333333;
+  font-weight: bold;
+}
+
+li.active a {
+  color: #0056b3;
+}
+
+li.active::after {
+  content: '';
+  position: absolute;
+  top: 30px;
+  left: 10%;
+  height: 3px;
+  width: 80%;
+  background-color: #0056b3;
+}
+
 .gallery {
+  margin-top: 70px;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 16px;

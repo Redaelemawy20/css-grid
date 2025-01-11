@@ -36,3 +36,13 @@ window.addEventListener('scroll', () => {
 
 // Initial load
 loadImages();
+
+function onListItemClick(e) {
+  e.preventDefault();
+  const alllinks = document.querySelectorAll('.nav_links li');
+  alllinks.forEach((link) => {
+    link.classList.remove('active');
+  });
+  const currentelm = e.currentTarget;
+  currentelm.classList.add('active');
+}
