@@ -69,6 +69,7 @@ function onListItemClick(e, layout) {
 function applyLayout(layout) {
   switch (layout) {
     case 'equal':
+      equalLayout();
       break;
     case 'dynamicRows':
       break;
@@ -77,4 +78,8 @@ function applyLayout(layout) {
     default:
       break;
   }
+}
+function equalLayout() {
+  const gallerySection = document.getElementById('gallery');
+  gallerySection.classList.add('equal');
 }
