@@ -65,6 +65,16 @@ li.active::after {
 .gallery-item {
   display: block;
   overflow: hidden;
+}
+#gallery.equal .gallery-item {
+  grid-row-end: span 1;
+  grid-column-end: span 1;
+}
+#gallery.rows .gallery-item {
+  grid-row-end: span var(--row-span, 1);
+  grid-column-end: span 1;
+}
+#gallery.rows-cols .gallery-item {
   grid-row-end: span var(--row-span, 1);
   grid-column-end: span var(--column-span, 1);
 }

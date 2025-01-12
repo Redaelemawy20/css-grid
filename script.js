@@ -1,7 +1,7 @@
 const gallery = document.getElementById('gallery');
 let page = 1; // Tracks the current page
+let currentLayout = 'equal';
 
-// Function to generate dummy images with random heights
 function generateGalleryItems(page) {
   const items = [];
   for (let i = 1; i <= 20; i++) {
@@ -20,12 +20,12 @@ function generateGalleryItems(page) {
   return items;
 }
 
-// Function to load images
 function loadImages() {
   const items = generateGalleryItems(page);
+  if (currentLayout == 'rows') spanItems(items, true);
+  if (currentLayout == 'rows-cols') spanItems(items, true, true);
   items.forEach((item) => gallery.appendChild(item));
   page++;
-  // setRowSpans();
 }
 
 // Infinite scrolling logic
@@ -52,11 +52,14 @@ function applyLayout(layout) {
   switch (layout) {
     case 'equal':
       equalLayout();
+      currentLayout = 'equal';
       break;
     case 'rows':
       dynamicRows();
+      currentLayout = 'rows';
       break;
-    case 'rows&cols':
+    case 'rows-cols':
+      currentLayout = 'rows-cols';
       dynamicRowsandClos();
       break;
     default:
@@ -65,20 +68,24 @@ function applyLayout(layout) {
 }
 function equalLayout() {
   const gallerySection = document.getElementById('gallery');
+  gallerySection.className = '';
   gallerySection.classList.add('equal');
 }
 function dynamicRows() {
   const gallerySection = document.getElementById('gallery');
-  gallerySection.classList.remove('equal');
-  spanItems(gallerySection, true);
+  gallerySection.className = '';
+  gallerySection.classList.add('rows');
+  const items = gallerySection.querySelectorAll('.gallery-item');
+  spanItems(items, true);
 }
 function dynamicRowsandClos() {
   const gallerySection = document.getElementById('gallery');
-  gallerySection.classList.remove('equal');
-  spanItems(gallerySection, true, true);
+  gallerySection.className = '';
+  gallerySection.classList.add('rows-cols');
+  const items = gallerySection.querySelectorAll('.gallery-item');
+  spanItems(items, true, true);
 }
-function spanItems(container, spanRows, spanCols) {
-  const items = container.querySelectorAll('.gallery-item');
+function spanItems(items, spanRows, spanCols) {
   items.forEach((item) => {
     if (spanRows) {
       const rowSpan = Math.ceil(Math.random() * 8) + 1;
