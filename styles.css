@@ -57,19 +57,23 @@ li.active::after {
 }
 
 .gallery-item {
+  display: block;
   overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  aspect-ratio: auto;
 }
 
 .gallery-item img {
   width: 100%;
-  height: auto;
   object-fit: cover;
 }
 
+.gallery.monasory {
+  grid-auto-rows: 40px;
+  grid-auto-flow: dense;
+}
+.gallery.monasory .gallery-item {
+  grid-row-end: span var(--row-span, 1);
+  grid-column-end: span var(--column-span, 1);
+}
 .gallery.equal img {
   height: 200px;
 }
