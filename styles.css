@@ -69,3 +69,11 @@ li.active::after {
   height: auto;
   object-fit: cover;
 }
+
+.gallery.equal img {
+  height: 200px;
+}
+
+.gallery.dynamicRows img {
+  height: auto;
+}

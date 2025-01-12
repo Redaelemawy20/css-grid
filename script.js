@@ -37,7 +37,7 @@ window.addEventListener('scroll', () => {
 // Initial load
 loadImages();
 
-function onListItemClick(e) {
+function onListItemClick(e, layout) {
   e.preventDefault();
   const alllinks = document.querySelectorAll('.nav_links li');
   alllinks.forEach((link) => {
@@ -45,4 +45,17 @@ function onListItemClick(e) {
   });
   const currentelm = e.currentTarget;
   currentelm.classList.add('active');
+  applyLayout(layout);
+}
+function applyLayout(layout) {
+  switch (layout) {
+    case 'equal':
+      break;
+    case 'dynamicRows':
+      break;
+    case 'monasory':
+      break;
+    default:
+      break;
+  }
 }
