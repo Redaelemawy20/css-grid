@@ -11,7 +11,7 @@ function generateGalleryItems(page) {
     // Create an image with a random height
     const img = document.createElement('img');
     const randomHeight = Math.floor(Math.random() * (500 + 1)) + 200; // Random height between 200px and 400px
-    img.src = `https://picsum.photos/200/${randomHeight}?random=${page * i}`;
+    img.src = `https://picsum.photos/200/${200}?random=${page * i}`;
     img.alt = `Image ${page * i} with height ${randomHeight}`;
 
     item.appendChild(img);
@@ -19,25 +19,7 @@ function generateGalleryItems(page) {
   }
   return items;
 }
-function setRowSpans() {
-  const items = document.querySelectorAll('.gallery-item');
-  console.log(items);
 
-  items.forEach((item) => {
-    const img = item.querySelector('img');
-    console.log(img);
-
-    // Wait for image to load to get correct height
-    img.onload = () => {
-      console.log('loaded');
-
-      const rowSpan = Math.ceil(Math.random() * 8) + 1; // Random span between 1 and 4
-      const columnSpan = Math.ceil(Math.random() * 2);
-      item.style.setProperty('--row-span', rowSpan);
-      item.style.setProperty('--column-span', columnSpan);
-    };
-  });
-}
 // Function to load images
 function loadImages() {
   const items = generateGalleryItems(page);
@@ -71,9 +53,11 @@ function applyLayout(layout) {
     case 'equal':
       equalLayout();
       break;
-    case 'dynamicRows':
+    case 'rows':
+      dynamicRows();
       break;
-    case 'monasory':
+    case 'rows&cols':
+      dynamicRowsandClos();
       break;
     default:
       break;
@@ -82,4 +66,27 @@ function applyLayout(layout) {
 function equalLayout() {
   const gallerySection = document.getElementById('gallery');
   gallerySection.classList.add('equal');
+}
+function dynamicRows() {
+  const gallerySection = document.getElementById('gallery');
+  gallerySection.classList.remove('equal');
+  spanItems(gallerySection, true);
+}
+function dynamicRowsandClos() {
+  const gallerySection = document.getElementById('gallery');
+  gallerySection.classList.remove('equal');
+  spanItems(gallerySection, true, true);
+}
+function spanItems(container, spanRows, spanCols) {
+  const items = container.querySelectorAll('.gallery-item');
+  items.forEach((item) => {
+    if (spanRows) {
+      const rowSpan = Math.ceil(Math.random() * 8) + 1;
+      item.style.setProperty('--row-span', rowSpan);
+    }
+    if (spanCols) {
+      const columnSpan = Math.ceil(Math.random() * 2);
+      item.style.setProperty('--column-span', columnSpan);
+    }
+  });
 }
