@@ -85,13 +85,11 @@ li.active::after {
   object-fit: cover;
 }
 
-/* #gallery.monasory .gallery-item {
- 
-} */
-/* #gallery.equal img {
-  height: 200px;
+@media screen and (max-width: 500px) {
+  ul {
+    gap: 5px;
+  }
+  li a {
+    font-size: 12px;
+  }
 }
-
-#gallery.dynamicRows img {
-  height: auto;
-} */
